@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.example.demo.entity.User">
+        <result column="mem_no" property="memNo" javaType="int"/>
+        <result column="mem_role" property="memRole" javaType="String"/>
+        <result column="mem_username" property="memUsername" javaType="String"/>
+        <result column="mem_id" property="memId" javaType="String"/>
+        <result column="mem_password" property="memPassword" javaType="String"/>
+    </resultMap>
+
+    <resultMap id="userDtoMap" type="com.example.demo.dto.UserDto">
+        <result column="mem_no" property="memNo" javaType="int"/>
+        <result column="mem_role" property="memRole" javaType="String"/>
+        <result column="mem_username" property="memUsername" javaType="String"/>
+        <result column="mem_id" property="memId" javaType="String"/>
+        <result column="mem_password" property="memPassword" javaType="String"/>
+    </resultMap>
+
+    <!--로그인-->
+    <select id="findTargetUserInfo" resultMap="userMap">
+        select *
+        from demo.user
+        where mem_id = #{memId}
+    </select>
+
+    <!--회원가입-->
+    <insert id="joinUser">
+        insert into demo.user
+        (mem_username, mem_id, mem_password)
+        values (#{memUsername}, #{memId}, #{memPassword})
+
+    </insert>
+
+    <!--내 정보-->
+    <select id="userInfo" resultMap="userDtoMap">
+        select *
+        from demo.user
+        where mem_no = #{memNo}
+    </select>
+
+    <!--회원정보 수정-->
+    <update id="updateUser">
+        update demo.user
+        set mem_id       = #{memId},
+            mem_password = #{memPassword},
+            mem_username = #{memUsername}
+        where mem_no = #{memNo}
+
+    </update>
+
+    <!--ID 중복체크-->
+    <select id="idCheck" resultType="int">
+        select COUNT(mem_id)
+        FROM demo.user
+        where mem_id = #{memId}
+    </select>
+
+</mapper>

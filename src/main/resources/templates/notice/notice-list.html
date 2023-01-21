@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:with=" user = ${#authentication.principal}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>테니스투게더 관리자</title>
+    <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.css">
+    <link rel="stylesheet" href="assets/css/shared/style.css">
+    <link rel="stylesheet" href="assets/css/demo_1/style.css">
+    <link rel="shortcut icon" href="asssets/images/favicon.ico"/>
+</head>
+<body class="header-fixed">
+
+<!-- partial:partials/_header.html -->
+<th:block th:include="/../partials/_header.html"></th:block>
+<!-- partial -->
+
+<div class="page-body">
+    <!-- partial:partials/_sidebar.html -->
+    <th:block th:include="/../partials/_sidebar.html"></th:block>
+    <!-- partial -->
+
+    <div class="page-content-wrapper">
+        <div class="page-content-wrapper-inner">
+            <div class="content-viewport">
+                <!-- Begin Page Content -->
+                <div class="row">
+                    <div class="col-12" style="margin-bottom: 15px; display: flex; justify-content: space-between;">
+                        <h4 style="font-weight: bold">글 목록</h4>
+                        <p class="text-gray"></p>
+                        <!--유저가 등록한 정보이기 때문에 등록할 필요성이 없다 판단하여 주석처리 해놓음.-->
+                        <!--<div style="float: right;">
+                            <a href="/register-user" class="btn btn-primary" style="margin-bottom: 10px;">회원 등록</a>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+        <div class="content-viewport row" style="font-weight: bold">
+            <div class="col-lg-12">
+                <div class="grid">
+                    <p class="grid-header" style="font-weight: bold">글 목록</p>
+                    <div class="grid-body">
+                        <div class="item-wrapper">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="ExcelDataTable">
+                                    <thead>
+                                    <tr>
+                                        <th style="font-weight: bold">#</th>
+                                        <th style="font-weight: bold">작성자</th>
+                                        <th style="font-weight: bold">제목</th>
+                                        <th style="font-weight: bold">내용</th>
+                                        <th style="font-weight: bold">생성일</th>
+                                        <th style="font-weight: bold">상태</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="ul, index : ${noticeList}">
+                                        <td><span th:text="${index.index + 1}"></span></td>
+                                        <td><span th:text="${ul.memUsername}"></span></td>
+                                        <td><span th:text="${ul.noticeTitle}"></span></td>
+                                        <td><span th:text="${ul.noticeContent}"></span></td>
+                                        <td><span th:text="${ul.noticeCreateDate}"></span></td>
+                                        <td>
+                                            <th:block th:switch="${ul.noticeStatus}">
+                                                <span th:case="1">활성화</span>
+                                                <span th:case="2">비활성화</span>
+                                                <span th:case="9">삭제</span>
+                                            </th:block>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- content viewport ends -->
+    <!-- partial:partials/_footer.html -->
+    <th:block th:include="/../partials/_footer.html"></th:block>
+    <!-- partial -->
+
+</div>
+<!-- page content ends -->
+</div>
+<!--page body ends -->
+
+<script src="assets/vendors/js/core.js"></script>
+<script src="assets/vendors/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/vendors/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assets/js/demo/datatables-demo.js"></script>
+<script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendors/chartjs/Chart.min.js"></script>
+<script src="assets/js/charts/chartjs.addon.js"></script>
+<script src="assets/js/template.js"></script>
+<script src="assets/js/dashboard.js"></script>
+
+</body>
+</html>

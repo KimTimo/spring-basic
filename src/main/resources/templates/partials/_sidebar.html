@@ -1,0 +1,98 @@
+<html th:with=" user = ${#authentication.principal}">
+<body>
+	<div class="sidebar">
+		<ul class="navigation-menu">
+
+			<!--ADMIN 권한을 가진 사람만 접근 할 수 있도록 처리함-->
+<!--			<li th:if="${user.memRole} == 'ADMIN'" th:value="${user.memRole}">-->
+<!--				<a href="#admin-li1" data-toggle="collapse" aria-expanded="false">-->
+<!--					<span class="link-title">관리자 관리</span>-->
+<!--					<i class="mdi mdi-food-apple link-icon"></i>-->
+<!--				</a>-->
+<!--				<ul class="collapse navigation-submenu" id="admin-li1">-->
+<!--					<li><a href="/admin-list">관리자 목록</a></li>-->
+<!--					<li><a href="/register-admin">관리자 등록</a></li>-->
+<!--				</ul>-->
+<!--			</li>-->
+			<li>
+				<a href="#admin-li2" data-toggle="collapse" aria-expanded="false">
+					<span class="link-title">정책 관리</span>
+					<i class="mdi mdi-calendar-text link-icon"></i>
+				</a>
+				<ul class="collapse navigation-submenu" id="admin-li2">
+					<li><a href="/policy-list">약관 관리</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#admin-li3" data-toggle="collapse" aria-expanded="false">
+				<span class="link-title">회원 관리</span>
+				<i class="mdi mdi-human-handsdown link-icon"></i>
+				</a>
+				<ul class="collapse navigation-submenu" id="admin-li3">
+					<li><a href="/user-list">회원 목록</a></li>
+					<li><a href="/report-list">신고 회원 목록</a></li>
+				</ul>
+			</li>
+			
+			<li>
+				<a href="#admin-li7" data-toggle="collapse" aria-expanded="false">
+					<span class="link-title">경기 관리</span>
+					<i class="mdi mdi-barley link-icon"></i>
+				</a>
+				<ul class="collapse navigation-submenu" id="admin-li7">
+					<li><a href="/game-list">경기 목록</a></li>
+				</ul>
+
+			</li>
+			
+			<li>
+				<a href="#admin-li4" data-toggle="collapse" aria-expanded="false">
+					<span class="link-title">학원/대관 관리</span>
+					<i class="mdi mdi-food-apple link-icon"></i>
+				</a>
+				<ul class="collapse navigation-submenu" id="admin-li4">
+					<li><a href="/school-list">학원/대관 목록</a></li>
+				</ul>
+			</li>
+
+			<li>
+				<a href="#admin-li10" data-toggle="collapse" aria-expanded="false">
+				<span class="link-title">공지사항 관리</span>
+				<i class="mdi mdi-calendar-text link-icon"></i>
+			</a>
+				<ul class="collapse navigation-submenu" id="admin-li10">
+					<li><a href="/notice-list">공지사항 목록</a></li>
+					<li><a href="/register-notice">공지사항 등록</a></li>
+				</ul>
+			</li>
+			
+			
+			<li>
+				<a href="#admin-li6" data-toggle="collapse" aria-expanded="false">
+					<span class="link-title">배너 관리</span>
+					<i class="mdi mdi-barley link-icon"></i>
+				</a>
+				<ul class="collapse navigation-submenu" id="admin-li6">
+					<li><a href="/banner-list">배너 목록</a></li>
+					<li><a href="/register-banner">배너 등록</a></li>
+				</ul>
+			</li>
+
+			<li>
+				<a href="#admin-li5" data-toggle="collapse" aria-expanded="false">
+					<span class="link-title">멤버쉽 관리</span>
+					<i class="mdi mdi-food-apple link-icon"></i>
+				</a>
+				<ul class="collapse navigation-submenu" id="admin-li5">
+					<li><a href="/membership-list">멤버쉽 목록</a></li>
+					<li><a href="/price-list">멤버쉽 금액</a></li>
+					<li><a href="/benefit-list">멤버쉽 혜택</a></li>
+				</ul>
+			</li>
+				
+		</ul>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</body>
+</html>

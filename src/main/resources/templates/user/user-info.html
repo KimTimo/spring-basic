@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:with=" user = ${#authentication.principal}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>테니스투게더 관리자</title>
+<link rel="stylesheet"
+	href="../assets/vendors/iconfonts/mdi/css/materialdesignicons.css">
+<link rel="stylesheet" href="../assets/css/shared/style.css">
+<link rel="stylesheet" href="../assets/css/demo_1/style.css">
+<link rel="shortcut icon" href="../asssets/images/favicon.ico" />
+<script src="https://cdn.ckeditor.com/4.8.0/full/ckeditor.js">
+
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body class="header-fixed">
+<!--<input type="hidden" name="memNo" th:value="${userInfo.memNo}">-->
+
+	<table class="table table-bordered" id="ExcelDataTable">
+		<tbody>
+			<tr>
+				<td colspan="4">
+					<h1 th:text="'유저 정보 : ' + ${userInfo.memNo}"></h1>
+					<h1 th:text="'유저 정보 : ' + ${user}"></h1>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>

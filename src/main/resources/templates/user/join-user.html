@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>테니스투게더 관리자</title>
+    <link rel="stylesheet"
+          href="../assets/vendors/iconfonts/mdi/css/materialdesignicons.css">
+    <link rel="stylesheet" href="../assets/css/shared/style.css">
+    <link rel="stylesheet" href="../assets/css/demo_1/style.css">
+    <link rel="shortcut icon" href="../asssets/images/favicon.ico" />
+    <script src="https://cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body class="header-fixed">
+
+<!--<th:block th:include="/../partials/_header.html"></th:block>-->
+<!-- Page Wrapper -->
+<div class="page-body">
+    <th:block th:include="/../partials/_sidebar.html"></th:block>
+
+    <!-- Content Wrapper -->
+    <div class="page-content-wrapper">
+        <div class="page-content-wrapper-inner">
+
+            <div class="content-viewport mx-auto">
+                <div class="">
+                    <div class="grid">
+                        <p class="grid-header" style="font-weight: bold">유저 등록</p>
+                        <form onsubmit="return Check()" action="/join-userOk" enctype="multipart/form-data"
+                              method="POST">
+                            <table class="table table-bordered"
+                                   style="width: 90%; cellspacing: '0'; margin: auto;">
+                                <tbody style="font-weight: bold">
+<!--                                <tr>-->
+<!--                                    <th>계정 구분</th>-->
+<!--                                    <td colspan="6">-->
+<!--                                        <input type="radio" value="ADMIN" name="memRole" checked>&nbsp; 관리자 &nbsp;-->
+<!--                                        <input type="radio" value="ADMIN2" name="memRole">&nbsp; 2차 관리자-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+                                <tr>
+                                    <th>ID</th>
+                                    <td colspan="4">
+                                        <input type="text" class="form-control" name="memId" id="memId" style="width: 450px;" placeholder="ID 입력">
+                                        <input type="hidden" id="idValue" name="idValue" value="">
+                                        <button type="button" id="idCheck" class="btn btn-primary">확인</button>
+                                    </td>
+                                    <th>비밀번호</th>
+                                    <td colspan="4">
+                                        <input type="password" class="form-control" name="memPassword" style="width: 450px;" placeholder="비밀번호 입력">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이름</th>
+                                    <td colspan="6">
+                                        <input type="text" id="memUsername" class="form-control" name="memUsername" placeholder="이름 입력">
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                            <div style="margin-bottom: 15px; margin-top: 15px; text-align: center;">
+                                <button type="submit" class="btn blue_btn btn-primary" id="submitButton">등록</button>
+                                <a href="/notice-list" class="btn gray_btn cancel_btn">취소</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.container-fluid -->
+                    <!-- End of Main Content -->
+
+                </div>
+            </div>
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top"> <i
+            class="fas fa-angle-up"></i>
+    </a>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="../assets/vendors/js/core.js"></script>
+<script src="../assets/vendors/datatables/jquery.dataTables.min.js"></script>
+<script
+        src="../assets/vendors/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/demo/datatables-demo.js"></script>
+<script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
+<script src="../assets/vendors/chartjs/Chart.min.js"></script>
+<script src="../assets/js/charts/chartjs.addon.js"></script>
+<script src="../assets/js/template.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+<!-- 추가 JS -->
+
+<!--아이디 중복확인-->
+<script>
+
+
+    $('#idCheck').on('click', function (){
+        const memId = $('#memId').val();
+
+        $.ajax({
+            type : 'GET',
+            async: false,
+            url : 'user-idCheck',
+            data: {
+                memId : memId
+            },
+            success : function (data){
+                if(data != 0){
+                    alert("이미 등록된 ID입니다.")
+                    $('#idValue').val(1);
+                } else {
+                    alert("사용 가능한 ID입니다.")
+                    $('#idValue').val(0);
+                }
+            }
+        })
+    });
+
+    function Check(){
+
+        const idValue = $('#idValue').val();
+        const memId = $('#memId').val();
+        const memUsername = $('#memUsername').val();
+
+        if(idValue == 1 || memId == '') {
+            alert("ID를 체크해주세요.")
+            return false;
+        } else if(memUsername == ''){
+            alert("이름을 입력해주세요.")
+            return false;
+        } else if(idValue == 0){
+            return true;
+        }
+    }
+
+    $("#memId").on("propertychange change keyup paste input", function(){
+        const memId = $('#memId').val();
+        if(memId == ''){
+            $('#idValue').val(0);
+        } else{
+            $('#idValue').val(1);
+        }
+
+    })
+
+</script>
+
+</body>
+
+</html>

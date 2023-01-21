@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.NoticeMapper">
+
+    <resultMap id="noticeMap" type="com.example.demo.dto.NoticeDto">
+        <result column="notice_id" property="noticeId" javaType="int"/>
+        <result column="mem_no" property="memNo" javaType="int"/>
+        <result column="mem_username" property="memUsername" javaType="String"/>
+        <result column="notice_title" property="noticeTitle" javaType="String"/>
+        <result column="notice_content" property="noticeContent" javaType="String"/>
+        <result column="notice_create_date" property="noticeCreateDate" javaType="String"/>
+        <result column="notice_modify_date" property="noticeModifyDate" javaType="String"/>
+        <result column="notice_status" property="noticeStatus" javaType="int"/>
+    </resultMap>
+
+    <select id="noticeList" resultMap="noticeMap">
+        select *
+        from notice
+                 left join demo.user u on notice.mem_no = u.mem_no
+    </select>
+
+    <insert id="regNotice">
+        insert into notice
+        (notice_id, mem_no, notice_title, notice_content, notice_create_date, notice_modify_date, notice_status)
+        values (#{noticeId}, #{memNo}, #{noticeTitle}, #{noticeContent}, NOW(), NOW(),
+                #{noticeStatus})
+    </insert>
+</mapper>

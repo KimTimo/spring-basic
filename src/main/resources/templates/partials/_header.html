@@ -1,0 +1,30 @@
+<html th:with=" user = ${#authentication.principal}">
+<body>
+<nav class="t-header">
+  <div class="t-header-brand-wrapper">
+    <a href="user-list">
+      <img src="/assets/images/logo_title.svg" alt="logo" class="logo" style="height: 70px; width: 200px;"/>
+      <img class="logo-mini" src="/assets/images/WALA.svg" alt="">
+    </a>
+  </div>
+  <div class="t-header-content-wrapper">
+    <div class="t-header-content">
+      <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
+        <i class="mdi mdi-menu"></i>
+      </button>
+      <ul class="nav ml-auto">
+      	<li class="nav-item nav-link">
+          <span class="small" style="margin-right: 10px;" th:text="${user.memId} + ' ��'"></span>
+          <!-- <img class="img-profile rounded-circle" th:src="${user.mem_img == null} ? 'assets/images/none.png' :  @{https://walabucket.s3.ap-northeast-2.amazonaws.com/wala/} + ${user.mem_img}"  style="height: 30px;width: 30px;"> -->
+         </li>
+        <li class="nav-item ">
+          <a class="nav-link" onclick="location.href='/logout'">
+            <i class="mdi mdi-logout mdi-1x"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

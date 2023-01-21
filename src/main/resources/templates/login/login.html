@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>관리자 로그인</title>
+    <link  type="text/css" rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.css" />
+    <link  type="text/css" rel="stylesheet" href="assets/vendors/css/vendor.addons.css" />
+    <link  type="text/css" rel="stylesheet" href="assets/css/shared/style.css" />
+    <link  type="text/css" rel="stylesheet" href="assets/css/demo_1/style.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  </head>
+  <body>
+    <div class="authentication-theme auth-style_1">
+      <div class="row">
+        <div class="col-lg-3 col-md-7 col-sm-9 col-11 mx-auto">
+          <div class="grid">
+            <div class="grid-body">
+              <div class="row">
+                <div class="col-lg-7 col-md-8 col-sm-9 col-12 mx-auto form-wrapper">
+                  <form action="/login" class="user" method="POST">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" name="memId" placeholder="아이디를 입력해주세요">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" name="memPassword" placeholder="비밀번호를 입력해주세요">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="checkbox" id="remember-me"  name="remember-me">
+                      <label for="remember-me">자동 로그인</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark btn-user btn-block">Login</button>
+                  </form>
+
+                  <br>
+                  <button type="button" id="join-user" class="btn btn-dark btn-user btn-block" onclick = "location.href = 'join-user'">회원가입</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/vendors/js/core.js"></script>
+    <script src="assets/vendors/js/vendor.addons.js"></script>
+    <script src="assets/js/template.js"></script>
+    <script th:inline="javascript" type="text/javascript">
+      const error =  [[${errorMsg}]]
+
+      if (error == 0) {
+        alert("로그인 실패")
+      } else if(error == 1){
+        alert("존재하지 않는 사용자입니다.")
+      } else if(error == 2){
+        alert("아이디 또는 비밀번호가 틀립니다.")
+      } else if(error == 3){
+        alert("비활성화된 계정입니다.")
+      }
+
+      // 파라미터값 초기화
+      history.replaceState({}, null, location.pathname);
+    </script>
+
+  </body>
+
+</html>
