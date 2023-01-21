@@ -1,6 +1,6 @@
  package com.example.demo.config. security;
 
- import com.example.demo.service.UserService;
+ import com.example.demo.service.UserServiceImpl;
  import lombok.RequiredArgsConstructor;
  import org.springframework.security.core.Authentication;
  import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -17,7 +17,7 @@
 @RequiredArgsConstructor
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler{
 
-	private final UserService userService;
+	private final UserServiceImpl userServiceImpl;
 
 	// 로그인 성공시 이동 페이지(default Page)
 	private String defaultUrl = "/notice-list";

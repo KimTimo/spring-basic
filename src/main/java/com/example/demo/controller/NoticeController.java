@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.NoticeDto;
-import com.example.demo.service.NoticeService;
+import com.example.demo.service.NoticeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,12 +16,12 @@ import java.util.List;
 @Controller
 public class NoticeController {
 
-    private final NoticeService noticeService;
+    private final NoticeServiceImpl noticeServiceImpl;
 
     // 글 목록
     @GetMapping("/notice-list")
     public ModelAndView noticeList(ModelAndView mv){
-        List<NoticeDto> noticeList = noticeService.noticeList();
+        List<NoticeDto> noticeList = noticeServiceImpl.noticeList();
 
         mv.addObject("noticeList", noticeList);
         mv.setViewName("notice/notice-list");
@@ -35,7 +35,7 @@ public class NoticeController {
 
     @PostMapping("register-noticeOk")
     public String regNoticeOk(NoticeDto noticeDto){
-        noticeService.regNotice(noticeDto);
+        noticeServiceImpl.regNotice(noticeDto);
         return "redirect:/notice-list";
     }
 

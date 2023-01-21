@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NoticeService {
+public class NoticeServiceImpl {
 
     private final NoticeMapper noticeMapper;
 

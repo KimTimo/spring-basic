@@ -22,13 +22,13 @@
     <!--로그인-->
     <select id="findTargetUserInfo" resultMap="userMap">
         select *
-        from demo.user
+        from user
         where mem_id = #{memId}
     </select>
 
     <!--회원가입-->
     <insert id="joinUser">
-        insert into demo.user
+        insert into user
         (mem_username, mem_id, mem_password)
         values (#{memUsername}, #{memId}, #{memPassword})
 
@@ -37,13 +37,13 @@
     <!--내 정보-->
     <select id="userInfo" resultMap="userDtoMap">
         select *
-        from demo.user
+        from user
         where mem_no = #{memNo}
     </select>
 
     <!--회원정보 수정-->
     <update id="updateUser">
-        update demo.user
+        update user
         set mem_id       = #{memId},
             mem_password = #{memPassword},
             mem_username = #{memUsername}

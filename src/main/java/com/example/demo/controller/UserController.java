@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.UserDto;
-import com.example.demo.service.UserService;
+import com.example.demo.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     // 회원가입 페이지
     @GetMapping("join-user")
@@ -28,14 +27,14 @@ public class UserController {
     // 회원가입 완료처리
     @PostMapping("join-userOk")
     public String joinUserOk(UserDto userDto){
-        userService.joinUser(userDto);
+        userServiceImpl.joinUser(userDto);
         return "redirect:/notice-list";
     }
 
     @GetMapping("user-info")
     public ModelAndView userInfo(ModelAndView mv, @RequestParam(value = "memNo", required = false) int memNo){
 
-        UserDto userInfo = userService.userInfo(memNo);
+        UserDto userInfo = userServiceImpl.userInfo(memNo);
         log.info("memNo => " + memNo);
 
         mv.addObject("userInfo", userInfo);
@@ -49,7 +48,7 @@ public class UserController {
     @ResponseBody
     @GetMapping("user-idCheck")
     public int idCheck(@RequestParam(value = "memId", required = false) String memId){
-        return userService.idCheck(memId);
+        return userServiceImpl.idCheck(memId);
     }
 
 }
